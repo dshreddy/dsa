@@ -1,15 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class ListNode {
+class ListNode 
+{
 public:
     int val;
     ListNode* next;
 };
 
-// Find the middle of a linked list with two pointers.
 // Time: O(n), Space: O(1)
-ListNode* middleOfList(ListNode* head) {
+ListNode* middleOfList(ListNode* head) 
+{
     ListNode *slow = head, *fast = head;
 
     while (fast && fast->next) {
@@ -19,10 +20,9 @@ ListNode* middleOfList(ListNode* head) {
     return slow;
 }
 
-
-// Determine if the linked list contains a cycle.
 // Time: O(n), Space: O(1)
-bool hasCycle(ListNode* head) {
+bool hasCycle(ListNode* head) 
+{
     ListNode *slow = head, *fast = head;
 
     while (fast && fast->next) {
@@ -35,25 +35,22 @@ bool hasCycle(ListNode* head) {
     return false;
 }
 
-
-// Determine if the linked list contains a cycle and
-// return the beginning of the cycle, otherwise return null.
 // Time: O(n), Space: O(1)
-ListNode* cycleStart(ListNode* head) {
+ListNode* cycleStart(ListNode* head) 
+{
     ListNode *slow = head, *fast = head;
 
-    while (fast && fast->next) {
+    while (fast && fast->next) 
+    {
         slow = slow->next;
         fast = fast->next->next;
-        if (slow == fast) {
-            break;
-        }
+        if (slow == fast) break;
     }
-    if (!fast || !fast->next) {
-        return nullptr;
-    }
+    if (!fast || !fast->next) return nullptr;
+    
     ListNode *slow2 = head;
-    while (slow != slow2) {
+    while (slow != slow2) 
+    {
         slow = slow->next;
         slow2 = slow2->next;
     }

@@ -6,9 +6,7 @@ class MyHashMap
 private:
 
     int size = 991;
-
     vector<pair<int,int> > arr[991];
-
     int hash(int key) { return key%size; }
 
 public:

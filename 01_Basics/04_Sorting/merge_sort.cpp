@@ -47,10 +47,7 @@ void merge_sort(int p, int q, vector<int> &nums)
 
 int main()
 {
-    vector<int>nums;
-    nums.push_back(1);
-    nums.push_back(2);
-    nums.push_back(-1);
+    vector<int>nums = {1,2,-1};
 
     //tita(n*logn)
     merge_sort(0, nums.size()-1, nums);

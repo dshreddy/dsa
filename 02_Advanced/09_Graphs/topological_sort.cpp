@@ -1,9 +1,9 @@
 #include<bits/stdc++.h>
 #define int long long int
-
 using namespace std;
 
-class Solution {
+class Solution 
+{
 public:
     bool canFinish(int numCourses, vector<vector<int> >& prerequisites) 
     {

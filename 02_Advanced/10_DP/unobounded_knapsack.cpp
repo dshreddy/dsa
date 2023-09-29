@@ -6,7 +6,8 @@ using namespace std;
 // Dynamic Programming Solution
 // Time: O(n * m), Space: O(n * m)
 // Where n is the number of items & m is the capacity.
-int dp(vector<int>& profit, vector<int>& weight, int capacity) {
+int dp(vector<int>& profit, vector<int>& weight, int capacity) 
+{
     int N = profit.size(), M = capacity;
     vector<vector<int> > dp(N, vector<int>(M + 1, 0));
 
@@ -20,13 +21,13 @@ int dp(vector<int>& profit, vector<int>& weight, int capacity) {
         } 
     }
 
-    for (int i = 1; i < N; i++) {
-        for (int c = 1; c <= M; c++) {
+    for (int i = 1; i < N; i++) 
+    {
+        for (int c = 1; c <= M; c++) 
+        {
             int skip = dp[i-1][c];
             int include = 0;
-            if (c - weight[i] >= 0) {
-                include = profit[i] + dp[i][c - weight[i]];//**//
-            }
+            if (c - weight[i] >= 0) include = profit[i] + dp[i][c - weight[i]];
             dp[i][c] = max(include, skip);
         }
     }

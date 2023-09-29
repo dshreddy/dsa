@@ -3,16 +3,18 @@
 
 using namespace std;
 
-class MedianFinder {
+class MedianFinder 
+{
 public:
     priority_queue<int, vector<int>, less<int> > small; //maxheap
     priority_queue<int, vector<int>, greater<int> > large; //minheap
 
-    MedianFinder() {
-        
+    MedianFinder() 
+    {
     }
     
-    void addNum(int num) {
+    void addNum(int num) 
+    {
 
         if(small.size()==0) small.push(num);
         else {
@@ -37,7 +39,8 @@ public:
         }
     }
     
-    double findMedian() {
+    double findMedian() 
+    {
 
         int s1 = small.size(), s2 = large.size();
 

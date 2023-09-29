@@ -71,13 +71,7 @@ int upper_bound(vector<int> arr, int target){
 
 int main()
 {
-    vector<int>nums;
-    nums.push_back(1);
-    nums.push_back(2);
-    nums.push_back(9);
-    nums.push_back(3);
-    nums.push_back(3);
-    nums.push_back(-1);
+    vector<int>nums = {1,2,9,3,3,-1};
 
 	sort(nums.begin(), nums.end());
     cout << binarySearch(nums, 1) << endl;

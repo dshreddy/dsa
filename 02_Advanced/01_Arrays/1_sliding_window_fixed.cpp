@@ -11,13 +11,27 @@ int main()
     int n = sizeof(arr)/sizeof(arr[0]);
     int k = 3;
 
-    //Key Idea O(n)
-    int l = 0;
-    for(int r=k-1; r<n; r++)
+    //O(n)
+    unordered_map<int,int>count;
+    int l = 0, r = 0;
+    for(int r=0; r<=k-1; r++) 
     {
-        for(int i=l; i<=r; i++) cout<<arr[i]<<"\t";
-        cout<<endl;
-        l++;
+        count[arr[r]]++;
+        if(count[arr[r]]>1) 
+        {
+            cout<<"Yes\n";
+            return 0;
+        }
+    }
+    for(int r=k; r< n; r++)
+    {
+        count[arr[l++]]--;
+        count[arr[r]]++;
+        if(count[arr[r]]>1) 
+        {
+            cout<<"Yes\n";
+            return 0;
+        }
     }
     
     /*

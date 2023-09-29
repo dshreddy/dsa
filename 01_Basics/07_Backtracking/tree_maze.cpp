@@ -1,6 +1,5 @@
-#include <vector>
-
-using std::vector;
+#include <bits/stdc++.h>
+using namespace std;
 
 class TreeNode {
     public:

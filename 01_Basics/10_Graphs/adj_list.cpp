@@ -2,8 +2,8 @@
 using namespace std;
 
 // Count paths (backtracking)
-int dfs(string node, string target, unordered_map<string, vector<string> > adjList, set<string>&visited) {
-
+int dfs(string node, string target, unordered_map<string, vector<string> > adjList, set<string>&visited) 
+{
     if (visited.count(node)) return 0;
     if (node == target) return 1;
 
@@ -15,21 +15,22 @@ int dfs(string node, string target, unordered_map<string, vector<string> > adjLi
 }
 
 // Shortest path from node to target.
-int bfs(string node, string target, unordered_map<string, vector<string> > adjList) {
-
+int bfs(string node, string target, unordered_map<string, vector<string> > adjList) 
+{
     set<string> visit;
     queue<string> queue;
+
     visit.insert(node);
     queue.push(node);
 
     int length = 0;
 
-    while (queue.size()) {
+    while (queue.size()) 
+    {
+        int l = queue.size();
 
-        int queueLength = queue.size();
-
-        for (int i = 0; i < queueLength; i++) {
-
+        for (int i = 0; i < l; i++) 
+        {
             string curr = queue.front();
             queue.pop();
 
@@ -45,7 +46,6 @@ int bfs(string node, string target, unordered_map<string, vector<string> > adjLi
         }
         length++;
     }
-
     return length;
 }
 
@@ -53,33 +53,7 @@ int main()
 {
     // Given directed edges, build an adjacency list
 
-    vector<vector<string> > edges;
-    vector<string>edge;
-
-    edge.push_back("A");
-    edge.push_back("B");
-    edges.push_back(edge);
-    edge.clear();
-
-    edge.push_back("B");
-    edge.push_back("C");
-    edges.push_back(edge);
-    edge.clear();
-
-    edge.push_back("B");
-    edge.push_back("E");
-    edges.push_back(edge);
-    edge.clear();
-
-    edge.push_back("C");
-    edge.push_back("E");
-    edges.push_back(edge);
-    edge.clear();
-
-    edge.push_back("E");
-    edge.push_back("D");
-    edges.push_back(edge);
-    edge.clear();
+    vector<vector<string> > edges = { {"A","B"}, {"B","C"}, {"B","E"}, {"C","E"}, {"E","D"}};
 
     unordered_map<string, vector<string> > adjList;
     for (vector<string> edge:  edges) 
@@ -95,6 +69,7 @@ int main()
         for(int i=0; i<p.second.size(); i++) cout<<p.second[i]<<"\t";
         cout<<endl;
     }
+
     /*
     GRAPH
              A->B->C
@@ -102,11 +77,14 @@ int main()
                 V
                 E->D
     */
+
+   //dfs
     set<string>s;
     cout<<endl;
     cout<<"Number of paths from A to E : "<<dfs("A","E",adjList,s)<<endl;
     cout<<endl;
-
+    
+    //bfs
     cout<<endl;
     cout<<"Shortest distance from A to E : "<<bfs("A","E",adjList)<<endl;
     cout<<endl;

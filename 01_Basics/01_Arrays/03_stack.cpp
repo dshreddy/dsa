@@ -1,39 +1,52 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-// Implementing a stack is trivial using a dynamic array (which we implemented earlier).
+// Implementing a stack is trivial using a dynamic array (which we implemented
+// earlier).
 class Stack {
 private:
-    vector<int> stack_;
+  vector<int> v;
+
 public:
-    Stack() {};
-    
-    //O(1)
-    void push(int n) {
-        stack_.push_back(n);       
-    }
-    //O(1)
-    int pop() {
-        if(stack_.size() > 0) {
+  Stack(){};
+  // O(1)
+  int top() {
 
-            int res = stack_[stack_.size() - 1];
-            stack_.pop_back();
-            return res;
-        }
-        return INT_MIN;
+    if (v.size() > 0)
+      return v[v.size() - 1];
+    else {
+
+      cout << "Error : No top for empty stack";
+      return INT_MIN;
     }
+  }
+  // O(1)
+  void push(int n) { v.push_back(n); }
+  // O(1)
+  void pop() {
+
+    if (v.size() > 0)
+      v.pop_back();
+    else
+      cout << "Error : Popping from empty stack\n";
+  }
+  // O(1)
+  bool isEmpty() { return v.size() == 0; }
 };
+int main() {
+  Stack stack;
+  stack.push(72);
 
-int main()
-{
-    Stack stack;
-    stack.push(1);
-    cout<<stack.pop()<<endl;
+  cout << stack.isEmpty() << endl;
+  cout << stack.top() << endl;
 
-    /*
-    SUGGESTED PROBLEMS
-    https://leetcode.com/problems/baseball-game/
-    https://leetcode.com/problems/valid-parentheses/
-    https://leetcode.com/problems/min-stack/
-    */
+  stack.pop();
+
+  cout << stack.isEmpty() << endl;
+  /*
+  SUGGESTED PROBLEMS
+  https://leetcode.com/problems/baseball-game/
+  https://leetcode.com/problems/valid-parentheses/
+  https://leetcode.com/problems/min-stack/
+  */
 }

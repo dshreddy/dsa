@@ -3,15 +3,12 @@
 
 using namespace std;
 
-// Given a list of edges of a connected undirected graph,
-// with nodes numbered from 1 to n,
-// return a list edges making up the minimum spanning tree.
-vector<pair<int, int> > mst(vector<vector<int> >& edges, int n) {
-
+vector<pair<int, int> > mst(vector<vector<int> >& edges, int n) 
+{
     //Making an undirected graph from given edges
     unordered_map<int, vector<pair<int, int> > > adj;
-    for (vector<int> edge : edges) {
-
+    for (vector<int> edge : edges) 
+    {
         int n1 = edge[0], n2 = edge[1], weight = edge[2];
         adj[n1].push_back(make_pair(n2, weight));
         adj[n2].push_back(make_pair(n1, weight));
@@ -21,7 +18,8 @@ vector<pair<int, int> > mst(vector<vector<int> >& edges, int n) {
     // (in this case 1) and pushing all its neighbors.
     priority_queue<tuple<int,int,int>, vector<tuple<int,int, int>>, greater<tuple<int, int, int> > > minHeap; 
 
-    for (pair<int, int> neighbor : adj[1]) {
+    for (pair<int, int> neighbor : adj[1]) 
+    {
         int node = neighbor.first, weight = neighbor.second;
         minHeap.push({weight, 1, node});
     }
@@ -30,8 +28,8 @@ vector<pair<int, int> > mst(vector<vector<int> >& edges, int n) {
     unordered_set<int> visit;
     visit.insert(1);
 
-    while (visit.size() < n) {
-
+    while (visit.size() < n) 
+    {
         tuple<int, int, int> cur = minHeap.top();
         minHeap.pop();
 
@@ -41,13 +39,12 @@ vector<pair<int, int> > mst(vector<vector<int> >& edges, int n) {
 
         mst.push_back({n1, n2});
         visit.insert(n2);
-        for (pair<int, int> p : adj[n2]) {
-
+        for (pair<int, int> p : adj[n2]) 
+        {
             int neighbor = p.first, weight = p.second;
             if (visit.count(neighbor) == 0) minHeap.push({weight, n2, neighbor});
         }
     }
-    
     return mst;
 }
 

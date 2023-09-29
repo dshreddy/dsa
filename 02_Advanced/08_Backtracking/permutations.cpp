@@ -22,15 +22,7 @@ signed main()
 {
    ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 
-//    int t; cin>>t;
-//    while(t--)
-
-    vector<int>v;
-    v.push_back(2);
-    v.push_back(1);
-    v.push_back(3);
-    v.push_back(3);
-
+   vector<int>v = {2,1,3,4};
    solve(v);
 
    cout<<(float)clock() / CLOCKS_PER_SEC<<endl;

@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#define int long long int
 using namespace std;
 
 class Node {
@@ -11,97 +12,107 @@ public :
 
     inline Node(int x) {val = x;}
 };
-//O(n)
-void Print(Node* head)
-{
-    while(head)
+
+class doublyList{
+public:
+    Node *head = NULL;
+    Node *tail = NULL;
+    //O(n)
+    void Print()
     {
-        cout<<head->val<<"\t";
-        head = head->next;
-    }
-    cout<<endl;
-}
-//O(n)
-Node* InsertAt(int i, int val, Node *head) 
-{
-    Node *new_node = new Node(val);
-
-    if(head == NULL) head = new_node;
-    else {
-
-        if(i==0) 
+        Node *current = head; 
+        while(current)
         {
-            head->prev = new_node;
-            new_node->next = head;
+            cout<<current->val<<"\t";
+            current = current->next;
+        }
+        cout<<endl;
+    }
+    //O(n)
+    void InsertAt(int i, int val) 
+    {
+        Node *new_node = new Node(val);
+
+        if(head == NULL) {
             head = new_node;
+            tail = new_node; // Update the tail when inserting the first node
         }
-        else 
-        {
-            Node *p = head,*q = head->next;
-            for(int j=0; j<i-1; j++)
+        else {
+
+            if(i==0) 
             {
-                p = p->next;
-                if(q) q = q->next; 
+                head->prev = new_node;
+                new_node->next = head;
+                head = new_node;
             }
-            p->next = new_node;
-            new_node->prev = p;
-            new_node->next = q;
-            if(q) q->prev = new_node;
+            else 
+            {
+                Node *p = head,*q = head->next;
+                for(int j=0; j<i-1; j++)
+                {
+                    p = p->next;
+                    if(q) q = q->next; 
+                }
+                p->next = new_node;
+                new_node->prev = p;
+                new_node->next = q;
+                if(q) q->prev = new_node;
+                else tail = new_node;
+            }
         }
     }
-    return head;
-}
-//O(n)
-Node* RemoveAt(int i, Node *head) 
-{
-    if(head == NULL) return head;
-    else {
+    //O(n)
+    void RemoveAt(int i) 
+    {
+        if(head == NULL) return;
+        else {
 
-        if(i==0) head = head->next;
-        else 
-        {
-            Node *p = head,*q = head->next;
-            for(int j=0; j<i-1; j++)
+            if(i==0) 
             {
-                p = p->next;
-                if(q) q = q->next; 
+                head = head->next;
+                if (head == NULL) tail = NULL;
             }
-            p->next = q->next;
-            if(q->next) q->next->prev = p;
+            else 
+            {
+                Node *p = head,*q = head->next;
+                for(int j=0; j<i-1; j++)
+                {
+                    p = p->next;
+                    if(q) q = q->next; 
+                }
+                p->next = q->next;
+                if(q->next) q->next->prev = p;
+                else tail = p;
+            }
         }
-    }
-    return head;
-}  
+    } 
+};
 
-int main() 
+signed main() 
 {
-    Node* head = NULL;
+    doublyList dll;
 
     //inserting at end
-    for(int i=0; i<10; i++) head = InsertAt(i,i+1,head);
+    for(int i=0; i<10; i++)  dll.InsertAt(i,i+1);
 
     //inserting at start
-    head = InsertAt(0,0,head);
+    dll.InsertAt(0,0);
 
     //inserting at Middle
-    head = InsertAt(1,11,head);
+    dll.InsertAt(1,11);
 
-    Print(head);
+    dll.Print();
 
     //Removing at middle
-    head = RemoveAt(1,head);
+    dll.RemoveAt(1);
 
     //Removing at end
-    head = RemoveAt(10,head);
+    dll.RemoveAt(8);
 
    //Removing at start
-    head = RemoveAt(0,head);
+    dll.RemoveAt(0);
 
-    Print(head);
-
-    Node *temp = head;
-    temp = temp->next;
-    cout<<temp->prev->val<<"..."<<temp->val<<"..."<<temp->next->val<<endl; 
+    dll.Print(); 
     return 0;
   /*
     SUGGESTED PROBLEMS
@@ -109,4 +120,3 @@ int main()
     https://leetcode.com/problems/design-browser-history/
   */  
 }
-  

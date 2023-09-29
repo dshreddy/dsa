@@ -3,10 +3,11 @@
 
 using namespace std;
 
-void solve(vector<int>set_,vector<int>subset) {
+void solve(vector<int>set_,vector<int>subset) 
+{
 
-     if(set_.size()==0) {
-
+     if(set_.size()==0) 
+     {
        for(int i=0; i<subset.size(); i++) cout<<subset[i]<<"\t";
        cout<<endl;
        return;
@@ -26,12 +27,9 @@ void solve(vector<int>set_,vector<int>subset) {
 signed main()
 {
    ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-   // int t; cin>>t;
-   // while(t--)
-   vector<int>v;
-   v.push_back(1);
-   v.push_back(2);
-   v.push_back(3);
+   
+   vector<int>v = {1,2,3};
+   
    vector<int>s;
    solve(v,s);
 

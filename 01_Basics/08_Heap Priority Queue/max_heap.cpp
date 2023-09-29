@@ -3,7 +3,9 @@
 using namespace std;
 
 /*
-Heap is a balanced binary
+Heap is a balanced binary tree that has 2 properties : 
+1) Structure property 
+2) Order property
 */
 
 class MaxHeap {

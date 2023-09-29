@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main() {
-
+int main() 
+{
     vector<string> names;
 
     names.push_back("alice");

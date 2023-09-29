@@ -1,114 +1,129 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define int long long int
 using namespace std;
 
 /*
     Main difference between arrays & linked lists are
     Arrays have fixed size, linked list size is not bounded
-    In arrays random access of elements at some index is possible while it isn't possible in list
-    In arrays all elements are stored in contigous block, while in linked list that isn't the case
+    In arrays random access of elements at some index is possible while it isn't
+   possible in list In arrays all elements are stored in contigous block, while
+   in linked list that isn't the case
 */
 
 class Node {
-public :
-    int val;
-    Node * next = NULL;
+public:
 
-    inline Node() {}
+  int val;
+  Node *next = NULL;
 
-    inline Node(int x) {val = x;}
+  inline Node() {}
 
-    inline Node(int x, Node *n) {val = x; next = n;}
+  inline Node(int x) { val = x; }
+
+  inline Node(int x, Node *n) {
+    val = x;
+    next = n;
+  }
+
 };
-//O(n)
-void Print(Node* head)
-{
-    while(head)
+
+class LinkedList {
+private:
+
+  Node *head = NULL;
+
+public:
+
+  // O(n)
+  void print() 
+  {
+
+    Node *current = head;
+
+    while (current) 
     {
-        cout<<head->val<<"\t";
-        head = head->next;
+      cout << current->val << "\t";
+      current = current->next;
     }
-    cout<<endl;
-}
-//O(n)
-Node* InsertAt(int i, int val, Node *head) 
-{
+    cout << endl;
+  }
+
+  // O(n)
+  void insertAt(int i, int val) 
+  {
+
     Node *new_node = new Node(val);
 
-    if(head == NULL) head = new_node;
-    else {
-
-        if(i==0) 
+    if (head == NULL) head = new_node;
+    else 
+    {
+      if (i == 0) 
+      {
+        new_node->next = head;
+        head = new_node;
+      } 
+      else 
+      {
+        Node *p = head, *q = head->next;
+        for (int j = 0; j < i - 1; j++) 
         {
-            new_node->next = head;
-            head = new_node;
+          p = p->next;
+          if (q) q = q->next;
         }
-        else 
-        {
-            Node *p = head,*q = head->next;
-            for(int j=0; j<i-1; j++)
-            {
-                p = p->next;
-                if(q) q = q->next; 
-            }
-            p->next = new_node;
-            new_node->next = q;
-        }
+        p->next = new_node;
+        new_node->next = q;
+      }
     }
+  }
 
-    return head;
-}
-//O(n)
-Node* RemoveAt(int i, Node *head) 
-{
-    if(head == NULL) return head;
-    else {
-
-        if(i==0) head = head->next;
-        else 
+  // O(n)
+  void removeAt(int i) 
+  {
+    if (head == NULL) return;
+    else 
+    {
+      if (i == 0) head = head->next;
+      else 
+      {
+        Node *p = head, *q = head->next;
+        for (int j = 0; j < i - 1; j++) 
         {
-            Node *p = head,*q = head->next;
-            for(int j=0; j<i-1; j++)
-            {
-                p = p->next;
-                if(q) q = q->next; 
-            }
-            p->next = q->next;
+          p = p->next;
+          if (q) q = q->next;
         }
+        p->next = q ? q->next : NULL;
+      }
     }
-    return head;
-}  
+  }
+};
 
-int main() 
-{
-    Node* head = NULL;
+signed main() {
 
-    //inserting at end
-    for(int i=0; i<10; i++) head = InsertAt(i,i+1,head);
+  LinkedList list;
 
-    //inserting at start
-    head = InsertAt(0,0,head);
+  // Inserting at end
+  for (int i = 0; i < 10; i++) list.insertAt(i, i + 1);
 
-    //inserting at Middle
-    head = InsertAt(1,11,head);
+  cout << "Linked List after insertions:" << endl;
+  list.print();
 
-    Print(head);
+  // Removing at middle
+  list.removeAt(1);
 
-    //Removing at middle
-    head = RemoveAt(1,head);
+  // Removing at end
+  list.removeAt(8);
 
-    //Removing at end
-    head = RemoveAt(10,head);
+  // Removing at start
+  list.removeAt(0);
 
-   //Removing at start
-    head = RemoveAt(0,head);
+  cout << "Linked List after removals:" << endl;
+  list.print();
 
-    Print(head);
+  return 0;
 
-    return 0;
-
-    /*
-    SUGGESTED PROBLEMS
-    https://leetcode.com/problems/reverse-linked-list/
-    https://leetcode.com/problems/merge-two-sorted-lists/
-    */
+  /*
+  SUGGESTED PROBLEMS
+  https://leetcode.com/problems/reverse-linked-list/
+  https://leetcode.com/problems/merge-two-sorted-lists/
+  */
 }
