@@ -1,7 +1,5 @@
 // Source : DSA in C++ by Michael Goodrich
-
 #include <bits/stdc++.h>
-
 using namespace std;
 
 enum MealType { NO_PREF, REGULAR, LOW_FAT, VEGETARIAN };
