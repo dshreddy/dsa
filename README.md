@@ -13,6 +13,6 @@ This repository contains implementation of Data Structures & Algorithms concepts
 
 # 3. References
 
-DSA : https://usaco.guide/
-OOPS : https://www.youtube.com/watch?v=wN0x9eZLix4
-STL : https://www.youtube.com/watch?v=PZogbfU4X5E
+- DSA : https://usaco.guide/
+- OOPS : https://www.youtube.com/watch?v=wN0x9eZLix4
+- STL : https://www.youtube.com/watch?v=PZogbfU4X5E
